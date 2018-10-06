@@ -27,5 +27,7 @@ jobs:
       
       - run: cp .env.testing .env
 
+      - run: php artisan db:seed
+
       # run tests!
       - run: ./vendor/bin/phpunit
