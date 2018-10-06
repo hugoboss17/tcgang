@@ -57,7 +57,7 @@ class CollectionController extends Controller
         ]);
         $collection->save();
 
-        return route('collections.index');
+        return redirect()->route('collections.index');
     }
 
     /**
@@ -89,7 +89,7 @@ class CollectionController extends Controller
       $collection->game_id = $request->get('game_id');
       
       $collection->save();
-      return route('collections.index');
+      return redirect()->route('collections.index');
     }
 
     /**
@@ -101,6 +101,6 @@ class CollectionController extends Controller
     public function destroy(Collection $collection)
     {
         $collection->delete();
-        return back();
+        return redirect()->route('collections.index');
     }
 }

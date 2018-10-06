@@ -23,9 +23,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
+        
+        Route::bind('collection', function ($id) {
+            return \App\Models\Collection::find($id);
+        });
     }
 
     /**
