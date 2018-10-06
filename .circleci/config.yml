@@ -48,6 +48,7 @@ jobs:
       
       - run: cp .env.testing .env
       - run: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+      - run: php artisan config:cache
       - run: php artisan migrate --env=testing --force
       - run: php artisan db:seed
 
