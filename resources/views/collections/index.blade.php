@@ -3,6 +3,12 @@
 @section('content')
     <h1>All the Collections</h1>
 
+    @if(\Session::has('success'))
+        <div class="alert alert-success">
+            {{\Session::get('success')}}
+        </div>
+    @endif
+
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
