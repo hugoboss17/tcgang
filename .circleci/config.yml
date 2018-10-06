@@ -3,13 +3,13 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.2-node
-      - image: circleci/mysql:5.7
-      - image: redis:2.8.19
 
     working_directory: ~/repo
 
     steps:
       - checkout
+
+      - run sudo apt install -y mysql-client
 
       # Download and cache dependencies
       - restore_cache:
