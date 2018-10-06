@@ -57,7 +57,7 @@ class CollectionController extends Controller
         ]);
         $collection->save();
 
-        return redirect()->route('collections.index');
+        return redirect()->route('collections.index')->with('success', 'Saved!');
     }
 
     /**
@@ -89,7 +89,7 @@ class CollectionController extends Controller
       $collection->game_id = $request->get('game_id');
       
       $collection->save();
-      return redirect()->route('collections.index');
+      return redirect()->route('collections.index')->with('success', 'Updated!');
     }
 
     /**
@@ -101,6 +101,6 @@ class CollectionController extends Controller
     public function destroy(Collection $collection)
     {
         $collection->delete();
-        return redirect()->route('collections.index');
+        return redirect()->route('collections.index')->with('success', 'Deleted!');
     }
 }
