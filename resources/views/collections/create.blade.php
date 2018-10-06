@@ -14,7 +14,6 @@
             {{ Form::select('game_id', $games, array('class' => 'form-control')) }}
         </div>
 
-        
         <div class="form-group">
             {{ Form::submit('Create', array('class' => 'btn btn-primary')) }}
         </div>
