@@ -5,9 +5,10 @@ jobs:
       - image: circleci/php:7.2-node
       - image: circleci/mysql:5.7.23
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_ROOT_PASSWORD: ''
-          MYSQL_DATABASE: tcgtesting
+          - MYSQL_USER=root
+          - MYSQL_PASSWORD=
+          - MYSQL_ALLOW_EMPTY_PASSWORD=true
+          - MYSQL_DATABASE=tcgtesting
 
     working_directory: ~/repo
 
@@ -16,6 +17,7 @@ jobs:
 
       - run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
+      - run: sudo docker-php-ext-install pdo_mysql
 
       # Download and cache dependencies
       - restore_cache:
