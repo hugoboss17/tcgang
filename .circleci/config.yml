@@ -5,11 +5,11 @@ jobs:
       - image: circleci/php:7.2-node
       - image: circleci/mysql:5.7.23
         environment:
-          - MYSQL_USER=root
-          - MYSQL_PASSWORD=
-          - MYSQL_ALLOW_EMPTY_PASSWORD=true
-          - MYSQL_DATABASE=tcgtesting
-
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DB: tcgtesting
+          MYSQL_USER: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_PASSWORD:
     working_directory: ~/repo
 
     steps:
@@ -45,9 +45,10 @@ jobs:
           paths:
             - node_modules
             - ~/.yarn
-      
+
+      - run: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s      
       - run: cp .env.testing .env
-      - run: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+      - run: php artisan key:generate
       - run: php artisan config:cache
       - run: php artisan migrate --env=testing --force
       - run: php artisan db:seed
