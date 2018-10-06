@@ -3,20 +3,20 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.2-node
-      - image: circleci/mysql:5.7.23
-        environment:
-          - MYSQL_USER=root
-          - MYSQL_PASSWORD=
-          - MYSQL_ALLOW_EMPTY_PASSWORD=true
-          - MYSQL_DATABASE=tcgtesting
+      #- image: circleci/mysql:5.7.23
+        #environment:
+        #  - MYSQL_USER=root
+        #  - MYSQL_PASSWORD=
+        #  - MYSQL_ALLOW_EMPTY_PASSWORD=true
+        #  - MYSQL_DATABASE=tcgtesting
     working_directory: ~/repo
 
     steps:
       - checkout
 
-      - run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev
-      - run: sudo docker-php-ext-install zip
-      - run: sudo docker-php-ext-install pdo_mysql
+      #- run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev
+      #- run: sudo docker-php-ext-install zip
+      #- run: sudo docker-php-ext-install pdo_mysql
 
       # Download and cache dependencies
       - restore_cache:
@@ -45,16 +45,16 @@ jobs:
             - node_modules
             - ~/.yarn
 
-      - run: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s      
-      - run: cp .env.testing .env
-      - run: php artisan key:generate
-      - run: php artisan config:cache
-      - run: php artisan migrate --env=testing --force
-      - run: php artisan db:seed
+      #- run: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s      
+      #- run: cp .env.testing .env
+      #- run: php artisan key:generate
+      #- run: php artisan config:cache
+      #- run: php artisan migrate --env=testing --force
+      #- run: php artisan db:seed
 
       # run tests!
-      - run: ./vendor/bin/phpunit
-      - store_test_results:
-          path: tests/_output
-      - store_artifacts:
-          path: tests/_output
+      #- run: ./vendor/bin/phpunit
+      #- store_test_results:
+      #    path: tests/_output
+      #- store_artifacts:
+      #    path: tests/_output
