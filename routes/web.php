@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('collections.index'));
 });
+
+Route::resource('collections', 'CollectionController');
