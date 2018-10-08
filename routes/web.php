@@ -16,3 +16,10 @@ Route::get('/', function () {
 });
 
 Route::resource('collections', 'CollectionController');
+#Route::get('collections/{collection}/manage', 'CollectionController@manage')->name('collections.manage');
+
+Route::prefix('api')->group(function () {
+    Route::prefix('yugi')->group(function () {
+        Route::get('allsets', 'ApiController@getAllSets');
+    });
+});
