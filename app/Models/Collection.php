@@ -20,7 +20,7 @@ class Collection extends Model
      */
     public function game()
     {
-        return $this->hasOne('App\Models\Game');
+        return $this->belongsTo('App\Models\Game');
     }
 
     /**

@@ -103,4 +103,49 @@ class CollectionController extends Controller
         $collection->delete();
         return redirect()->route('collections.index')->with('success', 'Deleted!');
     }
+
+    public function manage(Collection $collection)
+    {
+        return view('collections.manage', compact('collection'));
+    }
+
+    /**
+     * Adds a deck to the collection
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Collection  $collection
+     * @return \Illuminate\Http\Response
+     */
+    public function addDeck(Request $request, Collection $collection)
+    {
+        $request->validate([
+            'deck_id' => 'required'
+        ]);
+      
+        $this->collection->addDeck($collection, $request->get('deck_id'));
+
+        return response()->json([
+            'message' => 'added'
+        ]);
+    }
+
+    /**
+     * Adds a card to the collection
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Collection  $collection
+     * @return \Illuminate\Http\Response
+     */
+    public function addCard(Request $request, Collection $collection)
+    {
+        $request->validate([
+            'card_id' => 'required|integer'
+        ]);
+        
+        $this->collection->addDeck($collection, $request->get('deck_id'));
+
+        return response()->json([
+            'message' => 'added'
+        ]);
+    }
 }

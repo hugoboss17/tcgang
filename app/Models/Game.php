@@ -14,4 +14,12 @@ class Game extends Model
      * @var array
      */
     protected $fillable = ['name'];
+
+    /**
+     * The cards that belong to the collection.
+     */
+    public function collections()
+    {
+        return $this->hasMany('App\Models\Collection');
+    }
 }
